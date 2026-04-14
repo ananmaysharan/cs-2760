@@ -31,6 +31,8 @@ body.dark {
   --shadow: 2px 2px 0px rgba(0,0,0,0.3);
 }
 
+/* --- Global Styles --- */
+
 /* --- Reset & Base --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
