@@ -342,30 +342,59 @@ Alex approves the hire.
 
 The new role changes the team's dynamic immediately. Jade exhales for the first time in a year. But the payoff no longer flows as directly upward, and you can tell Alex is measuring that.
 
-* [See where you ended up.]
-    -> ending
+* [What's next?]
+    -> year_2030_policy
 
 === year_2029_followup_b ===
 You take the raise.
 
 One junior role is absorbed into the automated pipeline to offset the salary bump. Your team goes from four people to three. You are orchestrating systems more than managing people now.
 
-* [See where you ended up.]
-    -> ending
+* [What's next?]
+    -> year_2030_policy
 
 === year_2029_followup_c ===
 You use the extra margin to fund retraining.
 
 Marcus and Priya leave your team and land solid new roles elsewhere. Alex is not thrilled the money did not go toward management, but you used a good year to give people a softer landing.
 
-* [See where you ended up.]
+* [What's next?]
+    -> year_2030_policy
+
+=== year_2030_policy ===
+2030 Policy: AI Job Preservation and Work Sharing Act
+
+The AI Job Preservation and Work Sharing Act is currently on the ballot.
+
+What it does:
+Companies that gain productivity through AI cannot simply pocket those gains or cut headcount. Instead they must choose at least one of the following: reduce working hours without cutting pay, fund worker retraining accounts, or redesign roles rather than eliminate them.
+
+Who's for it:
+Labor unions, worker advocacy groups, and a coalition of economists who argue productivity gains should be broadly shared, not just flow to shareholders and executives.
+
+Who's against it:
+Most major tech companies, business lobbying groups, and some economists who argue it will slow AI adoption, hurt U.S. competitiveness, and that the market will create new jobs on its own without government mandates.
+
+* [Continue.]
+    -> year_2030_question
+
+=== year_2030_question ===
+The Tradeoff
+
+QUESTION
+
+How do you vote?
+
+* [Vote for the policy.]
+    -> ending
+
+* [Vote against the policy.]
+    -> ending
+
+* [You abstain. Voting is not really your thing.]
     -> ending
 
 === ending ===
-Four years after your promotion, the work is still changing.
-
-So are you.
-
-AI did not just change how your team produced marketing. It changed what counted as value, who got protected, and what kind of manager {player_name} decided to become.
+To be continued...
 
 -> END
