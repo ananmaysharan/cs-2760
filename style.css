@@ -1,306 +1,240 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,700|Quattrocento:700');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+/* --- Tokens --- */
+:root {
+  --bg: #f0ede6;
+  --bg-surface: #e6e2d9;
+  --text: #2a2a2a;
+  --text-muted: #6b6560;
+  --accent: #3d6b4f;
+  --accent-hover: #2c4e39;
+  --choice-bg: #e6e2d9;
+  --choice-hover: #d4cfc4;
+  --border: #c4bfb4;
+  --headline-color: #8b4513;
+  --pixel-font: 'Press Start 2P', monospace;
+  --body-font: 'IBM Plex Mono', monospace;
+  --shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+body.dark {
+  --bg: #1a1a2e;
+  --bg-surface: #22223a;
+  --text: #d4d0c8;
+  --text-muted: #8a8680;
+  --accent: #6ec88a;
+  --accent-hover: #8edda5;
+  --choice-bg: #2a2a44;
+  --choice-hover: #33335a;
+  --border: #3a3a55;
+  --headline-color: #e0a050;
+  --shadow: 2px 2px 0px rgba(0,0,0,0.3);
+}
+
+/* --- Reset & Base --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: lighter;
-    background: white;
-    overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body-font);
+  font-size: 15px;
+  line-height: 1.75;
+  transition: background 0.3s, color 0.3s;
 }
 
-@media screen and (prefers-reduced-motion: no-preference) {
-    body.switched {
-        transition: color 0.6s, background-color 0.6s;
-    }
+/* subtle pixel grid texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(transparent 95%, rgba(0,0,0,0.015) 95%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
 }
 
-h1,
-h2 {
-    text-align: center;
-    font-family: "Quattrocento", Georgia, 'Times New Roman', Times, serif;
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    font-size: 30pt;
-    margin-bottom: 10px;
-}
-
-h2 {
-    font-size: 14pt;
-    font-style: italic;
-    font-family: sans-serif;
-    font-weight: lighter;
-    color: #BBB;
-}
-
-.header {
-    padding-top: 3em;
-    padding-bottom: 3em;
-}
-
-/*
-  Built-in class:
-    # author: Name
-*/
-.byline {
-    font-style: italic;
-}
-
-.written-in-ink {
-    z-index: 3;
-    font-size: 9pt;
-    font-family: sans-serif;
-    text-align: center;
-    font-weight: 700;
-    position: fixed;
-    display: block;
-    width: 100%;
-    background: white;
-    margin: 0;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    height: 14px;
-    top: 0;
-}
-
-@media screen and (prefers-reduced-motion: no-preference) {
-    .written-in-ink {
-        transition: color 0.6s, background 0.6s;
-    }
-}
-
-/* 
-  Enables <iframe> support work on itch.io when using mobile iOS
-*/
+/* --- Layout --- */
 .outerContainer {
-    position: absolute;
-    display: block;
-    margin: 0;
-    padding: 0;
-    -webkit-overflow-scrolling: touch;
-    overflow: scroll;
-    overflow-x: hidden;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    margin-top: 24px;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-@media screen and (max-width: 980px) {
-    .outerContainer {
-        margin-top: 44px;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
+  position: absolute;
+  inset: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .container {
-    display: block;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    padding-top: 4em;
-    background: white;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 60px 24px 120px;
 }
 
-@media screen and (prefers-reduced-motion: no-preference) {
-    .switched .container {
-        transition: background-color 0.6s;
-    }
+/* --- Header --- */
+.header {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 3px double var(--border);
 }
 
-p {
-    font-size: 13pt;
-    color: #888;
-    line-height: 1.7em;
-    font-weight: lighter;
+.header h1 {
+  font-family: var(--pixel-font);
+  font-size: 13px;
+  line-height: 2;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  text-shadow: var(--shadow);
 }
 
-a {
-    font-weight: 700;
-    color: #b97c2c;
-    font-family: sans-serif;
-    text-decoration: none;
+.header .byline {
+  font-family: var(--body-font);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-style: italic;
 }
 
-.unclickable {
-    font-weight: 700;
-    color: #4f3411;
-    font-family: sans-serif;
-    text-decoration: none;
-    cursor: not-allowed;
+.header.invisible {
+  display: none;
 }
 
-a:hover {
-    color: black;
+/* --- Story Text --- */
+#story p {
+  margin-bottom: 16px;
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
-@media screen and (prefers-reduced-motion: no-preference) {
-    a {
-        transition: color 0.6s;
-    }
-
-    a:hover {
-        transition: color 0.1s;
-    }
+#story p.hide {
+  opacity: 0;
 }
 
-strong {
-    color: black;
-    font-weight: bold;
+/* --- Choices --- */
+p.choice {
+  margin-bottom: 4px;
+  padding: 0;
 }
 
-img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
+p.choice a {
+  display: block;
+  padding: 10px 14px 10px 32px;
+  background: var(--choice-bg);
+  border: 2px solid var(--border);
+  border-radius: 2px;
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  position: relative;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  box-shadow: var(--shadow);
 }
 
-.container .hide {
-    opacity: 0.0;
+/* pixel arrow cursor */
+p.choice a::before {
+  content: '\25B8';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.15s;
 }
 
-.container .invisible {
-    display: none;
+p.choice a:hover {
+  background: var(--choice-hover);
+  border-color: var(--accent);
+  transform: translateX(3px);
 }
 
-.container>* {
-    opacity: 1.0;
+p.choice a:hover::before {
+  opacity: 1;
 }
 
-@media screen and (prefers-reduced-motion: no-preference) {
-    .container>* {
-        transition: opacity 1.0s;
-    }
+p.choice a:active {
+  transform: translateX(3px) translateY(1px);
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.1);
 }
 
-/*
-  Class applied to all choices
-  (Will always appear inside <p> element by default.)
-*/
-.choice {
-    text-align: center;
-    line-height: 1.7em;
+/* unclickable choices */
+p.choice .unclickable {
+  display: block;
+  padding: 10px 14px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-style: italic;
 }
 
-/* 
-  Class applied to first choice
-*/
-:not(.choice)+.choice {
-    padding-top: 1em;
-}
-
-/*
-  Class applied to choice links
-*/
-.choice a, .choice span {
-    font-size: 15pt;
-}
-
-/* 
-  Built-in class:
-    The End # CLASS: end
-*/
-.end {
-    text-align: center;
-    font-weight: bold;
-    color: black;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
+/* --- Controls Bar --- */
 #controls {
-    z-index: 4;
-    font-size: 9pt;
-    text-align: center;
-    padding-bottom: 6px;
-    position: fixed;
-    right: 14px;
-    top: 4px;
-    user-select: none;
-    background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 16px;
+  background: var(--bg-surface);
+  border-bottom: 2px solid var(--border);
+  z-index: 100;
+  font-family: var(--pixel-font);
 }
 
-@media screen and (prefers-reduced-motion: no-preference) {
-    #controls {
-        transition: color 0.6s, background 0.6s;
-    }
+#controls a {
+  font-size: 8px;
+  padding: 6px 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
 }
 
-#controls [disabled] {
-    color: #ccc;
+#controls a:hover {
+  color: var(--accent);
+  border-color: var(--border);
 }
 
-#controls>*:not(:last-child):after {
-    content: " | ";
+#controls a[disabled] {
+  opacity: 0.35;
+  pointer-events: none;
 }
 
-@media screen and (max-width: 980px) {
-    #controls {
-        z-index: 2;
-        padding-top: 24px;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
+/* --- Images --- */
+#story img {
+  max-width: 100%;
+  margin: 16px 0;
+  border: 2px solid var(--border);
+  image-rendering: auto;
 }
 
-/* 
-  Dark Theme (Added in Inky 0.10.0)
-    # theme: dark
-*/
-
-body.dark {
-    background: black;
-    color: white;
+/* --- Scrollbar --- */
+.outerContainer::-webkit-scrollbar {
+  width: 8px;
+}
+.outerContainer::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+.outerContainer::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border: 1px solid var(--bg);
 }
 
-.dark h2 {
-    color: #666;
-}
-
-.dark .container {
-    background: black;
-}
-
-.dark .written-in-ink {
-    background: black;
-}
-
-.dark a {
-    color: #cc8f1a;
-}
-.dark .unclickable{
-    color: #c4af87;
-    cursor:not-allowed;
-}
-
-.dark a:hover {
-    color: white;
-}
-
-@media screen and (prefers-reduced-motion: no-preference) {
-    .dark a {
-        transition: color 0.6s;
-    }
-}
-
-.dark strong {
-    color: white;
-}
-
-.dark #controls [disabled] {
-    color: #444;
-}
-
-.dark .end {
-    color: white;
-}
-
-.dark #controls {
-    background: black;
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .container {
+    padding: 52px 16px 100px;
+  }
+  .header h1 {
+    font-size: 11px;
+  }
+  #controls a {
+    font-size: 7px;
+    padding: 5px 10px;
+  }
 }
